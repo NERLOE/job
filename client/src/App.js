@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import Shift from "./Shift";
-import "./style.css";
 
 export class App extends Component {
   state = {

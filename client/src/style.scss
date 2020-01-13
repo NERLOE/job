@@ -1,77 +1,75 @@
 body {
-    margin: 0px 50px;
-    padding: 0px;
+  margin: 0px 50px;
+  padding: 0px;
 }
 
 hr {
-    margin: 50px 0px;
-    border: 5px solid black;
+  margin: 50px 0px;
+  border: 5px solid black;
 }
 
 .numberPicker {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 
-    label {
-        font-weight: bold;
-        width: 200px;
-    }
+  label {
+    font-weight: bold;
+    width: 200px;
+  }
 
-    input {
-        position: relative;
-        left: 20px;
-        border-radius: 5px;
-        border: 1px dotted black;
-        width: 75px;
-    }
+  input {
+    position: relative;
+    left: 20px;
+    border-radius: 5px;
+    border: 1px dotted black;
+    width: 75px;
+  }
 }
 
 .shifts {
-    display: grid;
+  display: grid;
 
+  @media screen and (min-width: 600px) {
+    grid-template-columns: 50% 50%;
+  }
 
-    @media screen and (min-width: 600px) {
-        grid-template-columns: 50% 50%;
+  @media screen and (min-width: 900px) {
+    grid-template-columns: 33.3% 33.3% 33.3%;
+  }
+
+  @media screen and (min-width: 1200px) {
+    grid-template-columns: 25% 25% 25% 25%;
+  }
+
+  @media screen and (max-width: 350px) {
+    grid-template-columns: auto;
+  }
+
+  .shift {
+    margin-right: 50px;
+    margin-bottom: 25px;
+
+    hr {
+      margin: 15px 0px;
+      border: 1px solid rgba(0, 0, 0, 0.7);
     }
 
-    @media screen and (min-width: 900px) {
-        grid-template-columns: 33.3% 33.3% 33.3%;
+    p {
+      font-weight: bold;
+      margin: 0px;
     }
-
-    @media screen and (min-width: 1200px) {
-        grid-template-columns: 25% 25% 25% 25%;
-    }
-
-
-    @media screen and (max-width: 350px) {
-        grid-template-columns: auto;
-    }
-
-    .shift {
-        margin-right: 50px;
-        margin-bottom: 25px;
-
-        hr {
-            margin: 15px 0px;
-            border: 1px solid rgba(0, 0, 0, .7);
-        }
-
-        p {
-            font-weight: bold;
-            margin: 0px;
-        }
-    }
+  }
 }
 
 .salaryCalculations {
-    margin: 50px 0px;
-    padding: 0px;
+  margin: 50px 0px;
+  padding: 0px;
 
-    h1,
-    h2 {
-        margin: 0px;
-    }
+  h1,
+  h2 {
+    margin: 0px;
+  }
 
-    span {
-        font-weight: 500;
-    }
+  span {
+    font-weight: 500;
+  }
 }
