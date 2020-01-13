@@ -39,6 +39,7 @@ export class App extends Component {
 
     const { dates } = this.state;
     const newDateState = dates.map(date => {
+      console.log(JSON.stringify(date));
       if (date.id != id) return date;
 
       return {
@@ -48,7 +49,7 @@ export class App extends Component {
       };
     });
 
-    console.log(newDateState);
+    console.log(newDateState.map(out => JSON.stringify(out)));
 
     this.setState(prevState => ({
       ...prevState,
@@ -74,7 +75,7 @@ export class App extends Component {
       var date = dates[dateID];
       console.log(
         "date",
-        JSON.stringify(date),
+        date,
         "start",
         JSON.stringify(date.start),
         "end",
@@ -82,10 +83,10 @@ export class App extends Component {
       );
       console.log(defMinutes, nightMinutes, satMinutes, sunMinutes, pauseHours);
       var startDefMinutes = defMinutes;
-
+      var end = new Date(date.end);
       for (
-        var d = date.start;
-        d.getTime() < date.end.getTime();
+        var d = new Date(date.start);
+        d.getTime() < end.getTime();
         d.setTime(d.getTime() + 1000 * 60)
       ) {
         if (d.getDay() === 0) {
@@ -162,8 +163,8 @@ export class App extends Component {
         for (var i = 0; i < dif; i++) {
           dates.push({
             id: length + i,
-            start: this.getDate(),
-            end: this.getDate()
+            start: this.getDate().toString(),
+            end: this.getDate().toString()
           });
         }
         console.log("updated length dates", dates);
@@ -178,6 +179,7 @@ export class App extends Component {
   };
 
   getInputValue = date => {
+    date = new Date(date);
     return `${date.getFullYear()}-${`${date.getMonth() + 1}`.padStart(
       2,
       0
@@ -194,39 +196,14 @@ export class App extends Component {
       var date = this.state.dates[i];
       console.log("Loading: " + JSON.stringify(date));
 
-      const startValue = this.getInputValue(date.start);
-      const endValue = this.getInputValue(date.end);
-
       datesOutput.push(
-        <div id={i} key={i} className="shift">
-          <hr />
-          <p>Vagt nr. {i}</p>
-          <p>Start tid</p>
-          <input
-            name="start"
-            type="datetime-local"
-            value={startValue}
-            onChange={e =>
-              this.handleDate(i, {
-                end: date.end,
-                start: new Date(e.target.value)
-              })
-            }
-          ></input>
-          <p>Slut tid</p>
-          <input
-            name="end"
-            type="datetime-local"
-            value={endValue}
-            onChange={e =>
-              this.handleDate(i, {
-                end: new Date(e.target.value),
-                start: date.start
-              })
-            }
-          ></input>
-          <hr />
-        </div>
+        <Shift
+          id={i}
+          key={i}
+          start={date.start}
+          end={date.end}
+          handleDate={this.handleDate.bind(this)}
+        ></Shift>
       );
     }
 

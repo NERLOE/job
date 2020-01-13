@@ -4,12 +4,13 @@ var getDate = () => {
   var d = new Date();
   d.setSeconds(0);
   d.setMilliseconds(0);
+  return d;
 };
 
 export class Shift extends Component {
   state = {
-    start: getDate(),
-    end: getDate()
+    start: getDate().toString(),
+    end: getDate().toString()
   };
 
   changeStart = data => {
@@ -20,12 +21,12 @@ export class Shift extends Component {
       prevState => {
         return {
           ...prevState,
-          start: new Date(value),
+          start: new Date(value).toString(),
           end: prevState.end
         };
       },
       handleDate(id, {
-        start: new Date(value),
+        start: new Date(value).toString(),
         end: this.state.end
       })
     );
@@ -39,12 +40,12 @@ export class Shift extends Component {
       prevState => {
         return {
           ...prevState,
-          end: new Date(value),
+          end: new Date(value).toString(),
           start: prevState.start
         };
       },
       handleDate(id, {
-        end: new Date(value),
+        end: new Date(value).toString(),
         start: this.state.start
       })
     );
@@ -59,24 +60,21 @@ export class Shift extends Component {
     }));
   }
 
-  render() {
-    const startValue = `${this.state.start.getFullYear()}-${`${this.state.start.getMonth() +
-      1}`.padStart(2, 0)}-${`${this.state.start.getDate()}`.padStart(
+  getInputValue = date => {
+    date = new Date(date);
+    return `${date.getFullYear()}-${`${date.getMonth() + 1}`.padStart(
       2,
       0
-    )}T${`${this.state.start.getHours()}`.padStart(
+    )}-${`${date.getDate()}`.padStart(2, 0)}T${`${date.getHours()}`.padStart(
       2,
       0
-    )}:${`${this.state.start.getMinutes()}`.padStart(2, 0)}`;
+    )}:${`${date.getMinutes()}`.padStart(2, 0)}`;
+  };
 
-    const endValue = `${this.state.end.getFullYear()}-${`${this.state.end.getMonth() +
-      1}`.padStart(2, 0)}-${`${this.state.end.getDate()}`.padStart(
-      2,
-      0
-    )}T${`${this.state.end.getHours()}`.padStart(
-      2,
-      0
-    )}:${`${this.state.end.getMinutes()}`.padStart(2, 0)}`;
+  render() {
+    const startValue = this.getInputValue(this.state.start);
+
+    const endValue = this.getInputValue(this.state.end);
     return (
       <React.Fragment>
         <div className="shift">
