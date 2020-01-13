@@ -1,0 +1,89 @@
+body {
+  margin: 0px 50px;
+  padding: 0px;
+}
+
+hr {
+  margin: 50px 0px;
+  border: 5px solid black;
+}
+
+.numberPicker {
+  margin-bottom: 10px;
+}
+
+.numberPicker label {
+  font-weight: bold;
+  width: 200px;
+}
+
+.numberPicker input {
+  position: relative;
+  left: 20px;
+  border-radius: 5px;
+  border: 1px dotted black;
+  width: 75px;
+}
+
+.shifts {
+  display: -ms-grid;
+  display: grid;
+}
+
+@media screen and (min-width: 600px) {
+  .shifts {
+    -ms-grid-columns: 50% 50%;
+        grid-template-columns: 50% 50%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .shifts {
+    -ms-grid-columns: 33.3% 33.3% 33.3%;
+        grid-template-columns: 33.3% 33.3% 33.3%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .shifts {
+    -ms-grid-columns: 25% 25% 25% 25%;
+        grid-template-columns: 25% 25% 25% 25%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .shifts {
+    -ms-grid-columns: auto;
+        grid-template-columns: auto;
+  }
+}
+
+.shifts .shift {
+  margin-right: 50px;
+  margin-bottom: 25px;
+}
+
+.shifts .shift hr {
+  margin: 15px 0px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+.shifts .shift p {
+  font-weight: bold;
+  margin: 0px;
+}
+
+.salaryCalculations {
+  margin: 50px 0px;
+  padding: 0px;
+}
+
+.salaryCalculations h1,
+.salaryCalculations h2 {
+  margin: 0px;
+}
+
+.salaryCalculations span {
+  font-weight: 500;
+}
+/*# sourceMappingURL=style.css.map */
