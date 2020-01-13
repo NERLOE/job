@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Shift from "./Shift";
 
 export class App extends Component {
@@ -92,15 +92,11 @@ export class App extends Component {
           // Sunday hours
           sunMinutes++;
           defMinutes++;
-          if (d.getHours() >= 15) {
-            nightMinutes++;
-          }
         } else if (d.getDay() === 6) {
           // Saturday hours
-          satMinutes++;
           defMinutes++;
           if (d.getHours() >= 15) {
-            nightMinutes++;
+            satMinutes++;
           }
         } else {
           // Everyday hours
@@ -115,19 +111,22 @@ export class App extends Component {
       pauseHours += dif >= 8 ? 0.75 : dif >= 7 ? 0.5 : 0;
     });
 
-    var nightHours = nightMinutes / 60;
-    var defHours = defMinutes / 60;
-    var satHours = satMinutes / 60;
-    var sunHours = sunMinutes / 60;
+    var nightHours = (nightMinutes / 60).toFixed(2);
+    var defHours = (defMinutes / 60).toFixed(2);
+    var satHours = (satMinutes / 60).toFixed(2);
+    var sunHours = (sunMinutes / 60).toFixed(2);
 
     console.log(defMinutes, nightMinutes, satMinutes, sunMinutes, pauseHours);
 
-    var salary =
+    var salary = (
       defHours * this.state.defaultSalary +
       nightHours * this.state.bonus["night"] +
       satHours * this.state.bonus["saturday"] +
-      sunHours * this.state.bonus["sunday"];
-    var laborMarketRemoved = salary * (this.state.laborMarket / 100);
+      sunHours * this.state.bonus["sunday"]
+    ).toFixed(2);
+    var laborMarketRemoved = (salary * (this.state.laborMarket / 100)).toFixed(
+      2
+    );
     salary -= laborMarketRemoved;
     console.log("salary", salary);
 
@@ -286,28 +285,28 @@ export class App extends Component {
           <h2>
             Antal timer:{" "}
             <span>
-              {+calc.defHours.toFixed(2)} (
+              {+calc.defHours} (
               {+(calc.defHours * this.state.defaultSalary).toFixed(2)} kr)
             </span>
           </h2>
           <h2>
             Aften timer:{" "}
             <span>
-              {+calc.nightHours.toFixed(2)} (
+              {+calc.nightHours} (
               {+(calc.nightHours * this.state.bonus["night"]).toFixed(2)} kr)
             </span>
           </h2>
           <h2>
             Lørdags timer:{" "}
             <span>
-              {+calc.satHours.toFixed(2)} (
+              {+calc.satHours} (
               {+(calc.satHours * this.state.bonus["saturday"]).toFixed(2)} kr)
             </span>
           </h2>
           <h2>
             Søndags timer:{" "}
             <span>
-              {+calc.sunHours.toFixed(2)} (
+              {+calc.sunHours} (
               {+(calc.sunHours * this.state.bonus["sunday"]).toFixed(2)} kr)
             </span>
           </h2>
@@ -316,11 +315,11 @@ export class App extends Component {
           </h2>
           <h2>
             Arbejdsmarkedsbidrag fjernet:{" "}
-            <span>{+calc.laborMarketRemoved.toFixed(2)} kr</span>
+            <span>{+calc.laborMarketRemoved} kr</span>
           </h2>
           <hr />
           <h1>
-            Løn: <span>{+calc.salary.toFixed(2)} kr</span>
+            Løn: <span>{+calc.salary} kr</span>
           </h1>
         </div>
 
