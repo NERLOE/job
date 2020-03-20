@@ -212,9 +212,10 @@ export class App extends Component {
       <div className="App">
         <h1>
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/e/ea/F%C3%B8tex_logo.svg"
+            //src="https://upload.wikimedia.org/wikipedia/commons/e/ea/F%C3%B8tex_logo.svg"
+            src="https://via.ritzau.dk/data/images/00257/10a363fe-02d0-4149-a5c4-662a497761fe-w_720.png"
             style={{ height: "30px" }}
-            alt="Føtex Logo"
+            alt="Salling Group Logo"
           />{" "}
           Løn Beregner
         </h1>
